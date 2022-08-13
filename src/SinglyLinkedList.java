@@ -75,6 +75,18 @@ public class SinglyLinkedList {
 
     }
 
+    public ListNode deleteFirst(){
+        if(head == null){
+           return null;
+        }
+        else{
+            ListNode temp = head;
+            head = head.next;
+            temp.next = null;
+            return temp;
+        }
+    }
+
     public static void main (String[] args){
         SinglyLinkedList sll = new SinglyLinkedList();
         sll.head = new ListNode(10);
@@ -102,6 +114,8 @@ public class SinglyLinkedList {
         sll2.insert(1, 8); //8-->11-->null
         sll2.insert(2, 5); //8 -->5-->11-->null
         sll2.insert(3, 10);//8 -->5-->10-->11-->null
+        sll2.display();
+        System.out.println(sll2.deleteFirst().data);
         sll2.display();
 
     }
