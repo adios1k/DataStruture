@@ -87,6 +87,40 @@ public class SinglyLinkedList {
         }
     }
 
+    public void delete(int position){
+        //position is valid and starting from 1
+        if (position ==1){
+            head = head.next;
+        }else{
+            ListNode previous = head;
+            int count = 1;
+            while (count <position -1){
+                previous = previous.next;
+                count ++;
+            }
+            ListNode current = previous.next;
+            previous.next = current.next;
+        }
+
+    }
+
+
+    public ListNode deleteLast(){
+        if(head == null || head.next== null){
+            return head;
+        }
+        else{
+            ListNode current = head;
+            ListNode previous = null;
+            while(current.next !=null){
+                previous = current;
+                current = current.next;
+            }
+            previous.next = null;
+            return current;
+        }
+    }
+
     public static void main (String[] args){
         SinglyLinkedList sll = new SinglyLinkedList();
         sll.head = new ListNode(10);
@@ -116,6 +150,12 @@ public class SinglyLinkedList {
         sll2.insert(3, 10);//8 -->5-->10-->11-->null
         sll2.display();
         System.out.println(sll2.deleteFirst().data);
+        sll2.display();
+        System.out.println(sll2.deleteLast().data);
+        sll2.display();
+        sll2.delete(2);
+        sll2.display();
+        sll2.delete(1);
         sll2.display();
 
     }
