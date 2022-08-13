@@ -17,8 +17,28 @@ public class SinglyLinkedList {
             System.out.print(current.data + " --> ");
             current = current.next;
         }
-        System.out.print("null");
+        System.out.println("null");
 
+    }
+
+    public int length(){
+        if(head==null) {
+            return 0;
+        }
+        int count = 0;
+        ListNode current = head;
+        while(current !=null){
+            count ++;
+            current = current.next;
+        }
+
+        return count;
+    }
+
+    public void insertFirst(int value){
+        ListNode newNode = new ListNode(value);
+        newNode.next = head;
+        head = newNode;
     }
 
     public static void main (String[] args){
@@ -34,6 +54,13 @@ public class SinglyLinkedList {
         third.next= fourth;
 
         sll.display();
+        System.out.println("Length is - " + sll.length());
+
+        SinglyLinkedList sll1 = new SinglyLinkedList();
+        sll1.insertFirst(11);
+        sll1.insertFirst(8);
+        sll1.insertFirst(1);
+        sll1.display();
 
     }
 }
