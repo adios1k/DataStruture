@@ -121,6 +121,48 @@ public class SinglyLinkedList {
         }
     }
 
+    public boolean find(ListNode head, int searchKey){
+        if (head ==null){
+            return false;
+        }
+        ListNode current = head;
+        while(current!= null){
+            if(current.data == searchKey){
+                return true;
+            }
+            current = current.next;
+        }
+        return false;
+    }
+    public ListNode reverse(ListNode head){
+        if(head == null){
+            return head;
+        }
+        ListNode current = head;
+        ListNode previous = null;
+        ListNode next = null;
+        while(current != null){
+            next = current.next;
+            current.next = previous;
+            previous = current;
+            current =next;
+        }
+        return previous;
+    }
+
+    public ListNode getMiddleNode(){
+        if(head ==null){
+            return null;
+        }
+        ListNode slowPtr = head;
+        ListNode fastPtr = head;
+        while(fastPtr != null && fastPtr.next !=null){
+            slowPtr = slowPtr.next;
+            fastPtr= fastPtr.next.next;
+        }
+        return slowPtr;
+    }
+
     public static void main (String[] args){
         SinglyLinkedList sll = new SinglyLinkedList();
         sll.head = new ListNode(10);
@@ -135,6 +177,7 @@ public class SinglyLinkedList {
 
         sll.display();
         System.out.println("Length is - " + sll.length());
+        sll.display();
 
         SinglyLinkedList sll1 = new SinglyLinkedList();
         sll1.insertFirst(11);
@@ -142,6 +185,16 @@ public class SinglyLinkedList {
         sll1.insertFirst(1);
         sll1.insertLast(55);
         sll1.display();
+        System.out.println("Middle Node is " + sll1.getMiddleNode().data);
+        sll1.insertLast(12);
+        System.out.println("Middle Node is " + sll1.getMiddleNode().data);
+        sll1.insertLast(25);
+        System.out.println("Middle Node is " + sll1.getMiddleNode().data);
+        System.out.println("Post reverse");
+        SinglyLinkedList reversed = new SinglyLinkedList();
+        reversed.head = sll1.reverse(sll1.head);
+        reversed.display();
+
 
         SinglyLinkedList sll2 = new SinglyLinkedList();
         sll2.insert(1,11); // 11--> null
@@ -149,14 +202,16 @@ public class SinglyLinkedList {
         sll2.insert(2, 5); //8 -->5-->11-->null
         sll2.insert(3, 10);//8 -->5-->10-->11-->null
         sll2.display();
+        System.out.println("Is 29 found in Linked list " + sll2.find(sll2.head, 29));
+        System.out.println("Is 5 found in Linked list " + sll2.find(sll2.head, 5));
         System.out.println(sll2.deleteFirst().data);
         sll2.display();
         System.out.println(sll2.deleteLast().data);
         sll2.display();
         sll2.delete(2);
         sll2.display();
-        sll2.delete(1);
-        sll2.display();
+
+
 
     }
 }
