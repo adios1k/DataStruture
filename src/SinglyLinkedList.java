@@ -163,6 +163,30 @@ public class SinglyLinkedList {
         return slowPtr;
     }
 
+    public ListNode getNthNodeFromEnd(int n){
+        if (head ==null){
+            return null;
+        }
+        if (n <=0){
+            throw new IllegalCallerException("Invalid value of n " + n);
+        }
+        ListNode masterPtr = head;
+        ListNode refPtr = head;
+        int count = 0;
+        while(count <n){
+            if (refPtr == null){
+                throw new IllegalCallerException("Length input greater than length of the list " + n);
+            }
+            refPtr = refPtr.next;
+            count ++;
+        }
+        while(refPtr != null){
+            refPtr = refPtr.next;
+            masterPtr = masterPtr.next;
+        }
+        return masterPtr;
+    }
+
     public static void main (String[] args){
         SinglyLinkedList sll = new SinglyLinkedList();
         sll.head = new ListNode(10);
@@ -178,6 +202,8 @@ public class SinglyLinkedList {
         sll.display();
         System.out.println("Length is - " + sll.length());
         sll.display();
+        ListNode nthnode= sll.getNthNodeFromEnd(3);
+        System.out.println("3 rd node from list " + nthnode.data);
 
         SinglyLinkedList sll1 = new SinglyLinkedList();
         sll1.insertFirst(11);
