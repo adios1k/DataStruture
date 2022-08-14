@@ -187,6 +187,22 @@ public class SinglyLinkedList {
         return masterPtr;
     }
 
+    public void removeDuplicates(){
+        if (head == null){
+            return;
+        }
+        ListNode current = head;
+        while(current != null && current.next != null){
+            if(current.data == current.next.data){
+                current.next = current.next.next;
+            }
+            else{
+                current = current.next;
+            }
+        }
+
+    }
+
     public static void main (String[] args){
         SinglyLinkedList sll = new SinglyLinkedList();
         sll.head = new ListNode(10);
@@ -238,6 +254,16 @@ public class SinglyLinkedList {
         sll2.display();
 
 
-
+        SinglyLinkedList sll3 = new SinglyLinkedList();
+        sll3.insertFirst(1);
+        sll3.insertFirst(1);
+        sll3.insertFirst(2);
+        sll3.insertFirst(2);
+        sll3.insertFirst(2);
+        sll3.insertFirst(4);
+        sll3.insertFirst(5);
+        sll3.display();
+        sll3.removeDuplicates();
+        sll3.display();
     }
 }
